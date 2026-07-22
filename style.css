@@ -1,0 +1,45 @@
+:root {
+  --bg: #fdfcfa; --fg: #1a1a1a; --muted: #666; --line: #e5e2dc;
+  --accent: #7a4b2b; --card: #fff; --code: #f4f1ec;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16130f; --fg: #ece7df; --muted: #9a938a; --line: #322c24;
+    --accent: #d9a066; --card: #1e1a15; --code: #221d17;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+a { color: var(--accent); }
+h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 .5rem; }
+h2 { margin-top: 2.25rem; border-bottom: 1px solid var(--line); padding-bottom: .3rem; }
+h3 { margin-top: 1.5rem; }
+.desc { color: var(--muted); font-style: italic; margin: 0 0 1rem; }
+.meta { color: var(--muted); font-size: .95rem; margin: 0 0 1.5rem; }
+.meta span { display: block; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid var(--line); padding: .4rem .6rem; text-align: left; vertical-align: top; }
+th { background: var(--code); }
+code, pre { background: var(--code); border-radius: 4px; }
+code { padding: .1rem .3rem; }
+hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
+.back { display: inline-block; margin-bottom: 1.5rem; color: var(--muted); text-decoration: none; }
+/* gallery */
+.cards { list-style: none; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
+.cards li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.cards a { display: block; padding: 1rem 1.1rem; text-decoration: none; color: var(--fg); height: 100%; }
+.cards h2 { border: none; margin: 0 0 .3rem; font-size: 1.15rem; }
+.cards p { margin: 0; color: var(--muted); font-size: .9rem; }
+/* adjust panel */
+.adjust { margin: 2rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+.adjust h2 { margin-top: 0; border: none; }
+.adjust button { font: inherit; cursor: pointer; border: 1px solid var(--line); background: var(--code); color: var(--fg); border-radius: 6px; padding: .4rem .7rem; margin: .2rem .3rem .2rem 0; }
+.adjust button:hover { border-color: var(--accent); }
+.adjust button:disabled { opacity: .5; cursor: default; }
+.adjust .status { color: var(--muted); font-size: .9rem; margin-top: .6rem; }
+.adjust progress { width: 100%; }
+.banner { color: var(--muted); font-size: .9rem; }
