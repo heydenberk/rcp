@@ -35,25 +35,33 @@ hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
 .cards h2 { border: none; margin: 0 0 .3rem; font-size: 1.15rem; }
 .cards p { margin: 0; color: var(--muted); font-size: .9rem; }
 /* step timing */
-li.step { margin: .7rem 0; }
-.step-meta {
-  display: flex; flex-wrap: wrap; align-items: center; gap: .45rem;
-  margin-bottom: .2rem; font-size: .82rem; line-height: 1.3;
+li.step { position: relative; margin: .7rem 0; }
+.step-when, .step-meta {
+  display: inline-flex; flex-wrap: wrap; align-items: center; gap: .45rem;
+  margin: 0 .45rem .2rem 0; font-size: .82rem; line-height: 1.3; vertical-align: middle;
 }
+.step-text { display: block; }
 .step-clock {
-  font: inherit; font-variant-numeric: tabular-nums; color: var(--fg);
+  font: inherit; font-size: .82rem; font-variant-numeric: tabular-nums; color: var(--fg);
   background: var(--card); border: 1px solid var(--line); border-radius: 6px;
   padding: .1rem .35rem; cursor: pointer;
 }
 .step-clock:hover, .step-clock:focus { border-color: var(--accent); outline: none; }
 .step-day {
   color: var(--accent); border: 1px solid var(--accent); border-radius: 999px;
-  padding: 0 .5rem; font-weight: 600;
+  padding: 0 .5rem; font-weight: 600; white-space: nowrap;
 }
 .step-dur, .step-wait, .step-note {
   color: var(--muted); background: var(--code); border-radius: 999px; padding: .05rem .55rem;
 }
 .step-note { background: none; padding: 0; font-style: italic; }
+/* Wide screens: the clock sits in the left gutter, outside the step numbers */
+@media (min-width: 64rem) {
+  .step-when {
+    position: absolute; top: .1em; right: calc(100% + 2.1rem);
+    flex-direction: column; align-items: flex-end; margin: 0;
+  }
+}
 .times-note { color: var(--muted); font-size: .85rem; }
 .times-note button {
   font: inherit; font-size: .85rem; cursor: pointer; color: var(--accent);
