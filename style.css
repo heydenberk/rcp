@@ -34,6 +34,32 @@ hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
 .cards a { display: block; padding: 1rem 1.1rem; text-decoration: none; color: var(--fg); height: 100%; }
 .cards h2 { border: none; margin: 0 0 .3rem; font-size: 1.15rem; }
 .cards p { margin: 0; color: var(--muted); font-size: .9rem; }
+/* step timing */
+li.step { margin: .7rem 0; }
+.step-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .45rem;
+  margin-bottom: .2rem; font-size: .82rem; line-height: 1.3;
+}
+.step-clock {
+  font: inherit; font-variant-numeric: tabular-nums; color: var(--fg);
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+  padding: .1rem .35rem; cursor: pointer;
+}
+.step-clock:hover, .step-clock:focus { border-color: var(--accent); outline: none; }
+.step-day {
+  color: var(--accent); border: 1px solid var(--accent); border-radius: 999px;
+  padding: 0 .5rem; font-weight: 600;
+}
+.step-dur, .step-wait, .step-note {
+  color: var(--muted); background: var(--code); border-radius: 999px; padding: .05rem .55rem;
+}
+.step-note { background: none; padding: 0; font-style: italic; }
+.times-note { color: var(--muted); font-size: .85rem; }
+.times-note button {
+  font: inherit; font-size: .85rem; cursor: pointer; color: var(--accent);
+  background: none; border: 1px solid var(--line); border-radius: 6px; padding: .15rem .5rem;
+}
+.times-note button:hover { border-color: var(--accent); }
 /* adjust panel */
 .adjust { margin: 2rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
 .adjust h2 { margin-top: 0; border: none; }
