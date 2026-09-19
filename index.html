@@ -4,62 +4,120 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Recipes</title>
-<link rel="stylesheet" href="style.css?v=74cd2500">
+<link rel="stylesheet" href="style.css?v=3c1bd5aa">
 </head>
 <body>
 <main>
-<h1>Recipes</h1>
-<p class="desc">Adjust any recipe inline with your browser's on-device AI.</p>
-<ul class="cards">
-<li><a href="cinnamon-rolls/">
-      <h2>Cinnamon Rolls</h2>
-      
-    </a></li>
-<li><a href="french-toast/">
-      <h2>French Toast</h2>
-      
-    </a></li>
-<li><a href="high-protein-chicken-gyros/">
-      <h2>High-Protein Chicken Gyros with Yogurt Flatbread</h2>
-      <p>Lean grilled chicken in a yogurt-lemon marinade, soft nonfat-yogurt flatbreads, and a lightened high-protein tzatziki. Nonfat Greek yogurt does triple duty across all three components to keep fat low while protein stays high.</p>
-    </a></li>
-<li><a href="overnight-refrigerator-focaccia/">
-      <h2>Overnight Refrigerator Focaccia</h2>
-      
-    </a></li>
-<li><a href="pandan-sour-for-a-crowd/">
-      <h2>Pandan Sour For A Crowd</h2>
-      <p>A pandan sour engineered for a dinner party: everything batched ahead, egg white added per round. Makes 20 drinks — a 75 fl oz batch at 3.75 fl oz per drink, plus 1 oz egg white each. Two drinks per shaker is the hard ceiling, so that's ten rounds. Start the pandan syrup the day before.</p>
-    </a></li>
-<li><a href="philly-fish-house-punch/">
-      <h2>Philly Fish House Punch</h2>
-      <p>The 1732 Schuylkill Fishing Company original. Real oleo-saccharum, real peach brandy (schnapps doesn't count), cold black tea. Makes about 5.9 liters — fifty small cups. There's no ice in the bowl, so the whole thing needs to get cold in the fridge. Start the oleo at least 3 hours ahead. You'll need a 2-gallon punch bowl or dispenser, or just split it between two big pitchers.</p>
-    </a></li>
-<li><a href="scallop-raviolo-with-champagne/">
-      <h2>Scallop Raviolo with Champagne</h2>
-      
-    </a></li>
-<li><a href="thousand-layer-cake-kue-lapis-legit/">
-      <h2>Thousand Layer Cake Kue Lapis Legit</h2>
-      <p>Thousand-layer cake (kue lapis legit), from Coconut &amp; Sambal by Lara Lee. Serves 24. A spiced, buttery Indonesian sponge built from thin golden layers grilled one at a time — cinnamon, nutmeg, ginger and cardamom, 22 egg yolks, and enough butter that it keeps at least a week in the fridge. Also known as spekkoek ('bacon cake') in Dutch, for its streaky appearance.</p>
-    </a></li>
-<li><a href="toasted-bincho-dust-marshmallows/">
-      <h2>Toasted Bincho Dust Marshmallows</h2>
-      <p>Toasted Bincho Dust Marshmallows. Makes 18 (plenty for 10 people). The activated charcoal gives a binchotan theme; see variations for yuzu and matcha versions. Start a day in advance.</p>
-    </a></li>
-<li><a href="trofie-with-pistachio-artichokes-orange-zest/">
-      <h2>Trofie with Pistachio, Artichokes, and Orange Zest</h2>
-      
-    </a></li>
-<li><a href="shokupan-pullman-loaf/">
-      <h2>Yeasted shokupan pullman loaf</h2>
-      
-    </a></li>
-<li><a href="yuzu-almond-cake-with-sesame-brittle/">
-      <h2>Yuzu Almond Cake With Sesame Brittle</h2>
-      <p>Yuzu Almond Cake with Sesame Brittle. Serves 8. Served with a plum wine sabayon and ultra-thin slices of kaki (Japanese persimmon). Yuzu zest and juice can be replaced with Sicilian lemon.</p>
-    </a></li>
+<header class="gallery-head">
+  <h1>Recipes</h1>
+  <p class="desc">Adjust any recipe inline with your browser's on-device AI.</p>
+</header>
+<div class="toolbar" id="toolbar" hidden>
+  <div class="search">
+    <svg class="search-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+      <circle cx="9" cy="9" r="6"></circle><line x1="13.5" y1="13.5" x2="18" y2="18"></line>
+    </svg>
+    <input type="search" id="q" placeholder="Search recipes" aria-label="Search recipes" autocomplete="off" spellcheck="false">
+    <kbd>/</kbd>
+  </div>
+  <div class="kinds" role="group" aria-label="Filter by kind">
+      <button type="button" class="kind-btn" data-kind="" aria-pressed="true">All<span class="n">12</span></button>
+      <button type="button" class="kind-btn" data-kind="Bread" aria-pressed="false">Bread<span class="n">3</span></button>
+      <button type="button" class="kind-btn" data-kind="Dessert" aria-pressed="false">Dessert<span class="n">3</span></button>
+      <button type="button" class="kind-btn" data-kind="Main" aria-pressed="false">Main<span class="n">3</span></button>
+      <button type="button" class="kind-btn" data-kind="Drink" aria-pressed="false">Drink<span class="n">2</span></button>
+      <button type="button" class="kind-btn" data-kind="Breakfast" aria-pressed="false">Breakfast<span class="n">1</span></button>
+  </div>
+</div>
+<p class="count" id="count" aria-live="polite"></p>
+<ul class="cards" id="cards">
+<li data-kind="Bread" data-text="113g 120g 140g 150g 15x21 170g 180g 30g 440g 4g 67g 6g 80g 85g 9x13 across add am and another approximately are aside at away bake baking ball bean beat before border bowl bread brown butter cheese cinnamon clean cold combine combined constantly continue cook cool cover cream cup cups cut cutter directions doubled dough down during each egg elastic end european example filling final fine finish first flour fluffy for from frosting full golden gooey grams granulated ground heat heavy hours in inch ingredients instant internal into kind knead kneading large leaving let light lightly like line low make medium metal milk minutes mix mixer on one optional out oven over oz packed pan paper parchment paste pizza place pm powder powdered preheat prepare rack rectangle remove rest rests rise roll rolls room salt salted saucepan schedule sea seam second serve serving set shape side sit smooth speed spread stand starter strip strips sugar surface tablespoon tangzhong tbsp temp temperature texture the time to top tops transfer tsp twelve unsalted until vanilla warm water while whisk whisking whole wire with yeast you">
+      <a href="cinnamon-rolls/">
+        <span class="kind-tag" data-kind="Bread">Bread</span>
+        <h2>Cinnamon Rolls</h2>
+        
+      </a>
+    </li>
+<li data-kind="Breakfast" data-text="add am and best bowl bread breakfast brioche brown butter challah cinnamon combined cook crack dip directions dish each egg example extract foamy for french fresh fruit full golden grams heat hot immediately in ingredients into it kind letting maple medium melted milk minute minutes mixture of or over per place powdered schedule seconds serve shallow side skillet slice slices soak soaked sugar syrup tbsp the toast tsp until vanilla well whisk with works">
+      <a href="french-toast/">
+        <span class="kind-tag" data-kind="Breakfast">Breakfast</span>
+        <h2>French Toast</h2>
+        
+      </a>
+    </li>
+<li data-kind="Main" data-text="14g 196g 236g 23g 25g 49g 57g 59g about absorb across active add all and approx are assemble at baking balls batch biggest boneless breakdown breast butterflied cal calculated calories carb carbs carries charred check chicken chobani choice chopped clean clings cloves coat combine come component components cook cooking coriander cucumber cumin cup cups diced dill directions divide divided does dough dried drips drops dry during duty each eat english estimated even example excess extra fage fat fewer flatbread flatbreads flavor flavors flour floured fold for forms fresh from full garlic generous genuinely gluten grated greek grill grilled ground gyro gyros half heat helps high hits hour hours how hr if in ingredients intentional internal into is it juice keep kept kind knead label lay lb lean least lemon lettuce lightened lightly longer low lower macro macros main make makes marinade marinate marinated marinates marinating matters meat medium meld min minced minimum minutes mix more most much non nonfat notes nutrients of off often oil oiled olive on onion or oregano over pan paprika per pinch plain plus pm pounded powder protein puffed purpose raw red refrigerate replace rest roll romaine roughly salt sauté schedule scraping shaggy shredded side skillet skinless slice sliced slightly smooth so soft soluble source spiking spoon spots squeezed standard stays stir style surface tbsp temp tenderizes the then thickness thin thinly three tightly time to together tomatoes top total towel tracking triple tsp tweaks tzatziki under units until up usda use values vary veggies virgin vital vs warm weight well wheat while whisk whole wipe with without yogurt yogurts you">
+      <a href="high-protein-chicken-gyros/">
+        <span class="kind-tag" data-kind="Main">Main</span>
+        <h2>High-Protein Chicken Gyros with Yogurt Flatbread</h2>
+        <p>Lean grilled chicken in a yogurt-lemon marinade, soft nonfat-yogurt flatbreads, and a lightened high-protein tzatziki. Nonfat Greek yogurt does triple duty across all three components to keep fat low while protein stays high.</p>
+      </a>
+    </li>
+<li data-kind="Bread" data-text="15g 455g 512g 8g 9x13 add all am and around as at bake before between bowl bread butter coat cool cooling cover cups day deeply deflate dimple directions divide divided dough drizzle during edges example filling final fingers first flaky flour focaccia fold for forks forms fresh full generously gently golden grams grease greasing hand hours if in inch ingredients instant is kind kosher large least leaves let lid lukewarm maldon min minimum minutes mix motions nearly of oil oiled olive one optional or oven over overnight pan pans per perform pie place plastic plate plates pm preheat puffy purpose racks refrigerate refrigerator remaining rest rise roll room rosemary salt schedule sea serve serving smooth spatula sprinkle sticky stir stretch such tbsp temperature the then tightly to together transfer tsp two uncovered underneath until up using water wet whisk with wrap yeast">
+      <a href="overnight-refrigerator-focaccia/">
+        <span class="kind-tag" data-kind="Bread">Bread</span>
+        <h2>Overnight Refrigerator Focaccia</h2>
+        
+      </a>
+    </li>
+<li data-kind="Drink" data-text="295ml 330g 395ml 445ml 590ml 7g 890ml about above abv accurately actual added adjust after again against agitation ahead albumen all also amber an and another anything are arrack as at back bar base batch batched bath because been before below better between big bit bottle bowl briefly broken build built but buys by can cap ceiling chill chilled chilling citrus clear close cold color combine come comes commit compete completely compressed constraint container coupes couple cover cross crowd cup cups day days density differently dilutes dinner directions dissolves dissolving do does doesn doing don dose dosed double down drink drinking drinks dry each egg else engineered enough esters every everything example expands extra extract fast few fewer fighting figure fill find fine firmly first fl flabby flat foam for four free freely freeze freezer fresh fridge from frosted full gains get getting gives glasses go grams grate grating guests halves handfuls hard harder have heat hence here hold holding hot hours ice if immediately in increments ingredients instead interchangeable intermittent into is it jade jamaica jar juice keeps khaki kind lands lazy lead let like lime limes litre little ll look looking looks make makes matters measure measuring melt mesh mid minute minutes mixed ml month more morning need needed network next no not notes nothing now nutmeg of off olive on once one only open or out over overnight oz pacing painfully palm pandan party pass per picks pitcher plus pm pooled pop pour prep pressure properly protein push put quantities quantity ratio ratios re reach reads real reason recipe refrigerated removes repeat rest room roughly round rounds rum runs salt same sand sat scaled schedule sea seal sealed seconds see separate separated service set sets seven shake shaker shaking sharp shortcut sieve sink sit sitting six skipping small smell smith so soapy something sour spec spirit squeeze start starts step still stir stop strain strainer stratify sugar syrup takes taste tasting temperature ten test than that the them then these they thick thin thing this three through tighter time tin to together top total traditional trick tsp turns two under until up use used usually ve volume want warm washed water weak weight well wet what which while whisk white whites whole why will with without won work worth would you your">
+      <a href="pandan-sour-for-a-crowd/">
+        <span class="kind-tag" data-kind="Drink">Drink</span>
+        <h2>Pandan Sour For A Crowd</h2>
+        <p>A pandan sour engineered for a dinner party: everything batched ahead, egg white added per round. Makes 20 drinks — a 75 fl oz batch at 3.75 fl oz per drink, plus 1 oz egg white each. Two drinks per shaker is the hard ceiling, so that's ten rounds. The whole thing comes together in about three hours with no overnight step.</p>
+      </a>
+    </li>
+<li data-kind="Drink" data-text="16g 375ml 680g about add aged ahead all also and another appleton as at away back bad bags basically be better between big bites black block boiled both bottle bottles bowl brandy but can candy chill chilled cocktail cognac cold company cool count cover cross crème cup cups day de demerara did directions dispenser dissolve dissolved doesn done down drink each eau everything example extra extras fallback feeling few fifty find fine fish fishing float for fresh fridge from full funk gallon get gets giving goes good got grams grate grating harsh here hours house ice if in ingredients instead into is it jamaican juice juicing just kind kuchan least lemon lemons lighter like liqueur liters little ll longer loose make makes making manage mean melt minutes mix ml more most move muddle need needs no not nutmeg of oleo on one only or original out over overnight oz party past peach peel peeled peeler peels people philly pitchers pith plain plus pm point pour punch pêche raw re real recipe rest roughly rum saccharum save schedule schnapps schuylkill serving should since sits sliced small smash smells smith sneaks so something splash split start stir strain street strength strips strong stuff sugar takes taking taste tea the them then there they thin thing this time to top toss try two until up ve vie vs walk want water went wet what whatever wheels when whenever which whole wide wine with would you">
+      <a href="philly-fish-house-punch/">
+        <span class="kind-tag" data-kind="Drink">Drink</span>
+        <h2>Philly Fish House Punch</h2>
+        <p>The 1732 Schuylkill Fishing Company original. Real oleo-saccharum, real peach brandy (schnapps doesn't count), cold black tea. Makes about 5.9 liters — fifty small cups. There's no ice in the bowl, so the whole thing needs to get cold in the fridge. Start the oleo at least 3 hours ahead. You'll need a 2-gallon punch bowl or dispenser, or just split it between two big pitchers.</p>
+      </a>
+    </li>
+<li data-kind="Main" data-text="200g 475g 5g 7g 8mm about add adding after all almost amount an and around arthur as aside at attachment author avoid back bag ball be becomes before below bench between bit bits blended blender blunt boil both bottle bowl brescia bring broth brushing build but butter by can caputo card center champagne cheaper chewy chilled chives chop chopped cleaned cohesive color combine combined comes consistency continue cook cooked cooking corner corners countertop cover covered cream creamy create crosswise crumbly cup cups cut cutter days deep depression diameter directly disk doh donut dough down drinking drop dropping dry drying dust dusting each edges egg equal estimated eve even evenly excess extra feels few fewer fill filling fillings finely fingers fingertips firm first fit flat flatten flour floured flours fluted fold for fork franciacorta freeze freezer fresh from frozen fully gallon gather gentle gently glass gluten going good gradually grated half hand hands harder have hear heat heavy high hole hook hot hour hours hugs hydrate if in inch inches ingredient ingredients into is it italy just keep kind king knead knife kosher laminates large larger lay layer least leaving lemon let lightly like liquid little lock look looks low main make makes market marry medium melt method minute minutes mist mix mixer mixing mold month more mountain mousse narrower nearby necessary needed new northern notes occasion occasionally of off oil olive on one onto or ounces out over overnight paddle pairing pan partially pass pasta paste pastry piece pieces pin pipe piping place plastic plate play plumps possible pot pound pour preroll press prevent progressively prosecco pull puree purpose quantities quickly raggy ravioli raviolo reach ready recommends refrigerate refrigerator relax remaining rest rested return right ring roll rolled roller rolling room rotate round rounds salt sauce sauté save scallop scallops scrape scraper scraping sea seal season seasoned second seconds see semolina serve serves servings set setting settings shake shape sheet sheets should side sides silky similar simmer single sit size slight slightly slotted smooth so soapy sodium soft somewhat special speed spider spoon spoonfuls spray square stand start sticking stiff stiffer still stir stirring storage stpp strainer strengthens such surface surfaces swirl switch tablespoon tablespoons taste tastes teaspoons temperature tender than thaw the them then thick thickens thin this through throughout thumb time tipo to together toss total transfer treated trim tripolyphosphate tug turn two uncover unsalted until up use using vacuum variation velvety virgin warmed water week weight well wet when which white wide widest will wine with within work working wrap year yellow yield yolk yolks you your zest zipper">
+      <a href="scallop-raviolo-with-champagne/">
+        <span class="kind-tag" data-kind="Main">Main</span>
+        <h2>Scallop Raviolo with Champagne</h2>
+        
+      </a>
+    </li>
+<li data-kind="Dessert" data-text="about add additions adjust again air all also an and another any appearance as at bacon baking bang base batter beat beaters beating being between bowl broiler bubbles built burns butter buttery by cake cardamom careful cinnamon clean cm cocktail coconut combine completely condensed consistency constantly cool depending dessert directions done doubled dry dutch each easily egg electric enough even example extra fan first fish flatten flour fluffy fold for form free fridge from full fully function gas gently get ginger golden grams grease greasing grill grilled grilling ground heat high higher holes icing if in incorporated indonesian ingredients into is it its keeping keeps kind knife knock known kue lapis lara layer layers least lee legit line low lower may measure medium milk minutes mixture mm need needed never not notes nutmeg of off on one only onto or out oven over overmix pale palette parchment per plain plus pm pop powder powdered preheat purpose rack remaining remove repeat rich room roughly round salt sambal schedule sea separate serve serves shelf shorten should sides sift slice slices small smooth softened spatula speed spekkoek spiced sponge spread step stick streak streaky sugar surface switch tablespoons take temperature that the then thick thin this thousand time tin to together too top tsp turn turns units unsalted until use used using very volume watch week when whipped whisk will wire with work yolk yolks you">
+      <a href="thousand-layer-cake-kue-lapis-legit/">
+        <span class="kind-tag" data-kind="Dessert">Dessert</span>
+        <h2>Thousand Layer Cake Kue Lapis Legit</h2>
+        <p>Thousand-layer cake (kue lapis legit), from Coconut &amp; Sambal by Lara Lee. Serves 24. A spiced, buttery Indonesian sponge built from thin golden layers grilled one at a time — cinnamon, nutmeg, ginger and cardamom, 22 egg yolks, and enough butter that it keeps at least a week in the fridge. Also known as spekkoek ('bacon cake') in Dutch, for its streaky appearance.</p>
+      </a>
+    </li>
+<li data-kind="Dessert" data-text="140g 275g 50g 80ml about activated add adding advance agave all and are aside at available avoids baking base based before begin bincho binchotan blocks bloomed board boil boiling bowl bright candied capsules caster charcoal chop clean closely cm coals coat coated coating cold color combine completely concentrate contents cool cooled corn cornflour cornstarch cover cup cups cut day decant dessert diced directions dollops done down drive drizzle dry dust eat envelopes equal example few flavor food for fresh from fruit full fully gelatine gently gives golden grams guests has health heat heavy hold holds honey horizontally hour hours icing immediately in incorporated ingredients into invite is it jam jammy jug juice just keep keeps kind knife large lay leave lemon light long low machine make makes marshmallow marshmallows mass matcha meanwhile medium melt melted metal minutes mix mixer mixing mixture ml nectar need next not of off often oil oiled on onto open optionally or out over own palette pan parchment paste peach peaches peel people per piece pieces pit place plenty pm pour pouring powder powdered purée put raw reach reaches ready reduction repeat ribbon ripe roll room round runs saucepan schedule scorching see serve served serving set sheets side sift simmer simmering six skewer skewers skip small smooth so soak soaked soft speed spoon spots spray spread squeeze stage stand start step sticky stir stirring stores substitutions sugar superfine syrup tbsp tea temperature the their theme then thermometer thick thickens thin thread three time times to toast toasted top towel tray turn twice until variations vegetable versions vertically wait warm watching water weeps wet when whenever which while whip whipped whisk whisking will with wooden you yuzu">
+      <a href="toasted-bincho-dust-marshmallows/">
+        <span class="kind-tag" data-kind="Dessert">Dessert</span>
+        <h2>Toasted Bincho Dust Marshmallows</h2>
+        <p>Toasted Bincho Dust Marshmallows. Makes 18 (plenty for 10 people). The activated charcoal gives a binchotan theme; see variations for yuzu and matcha versions. Start a day in advance.</p>
+      </a>
+    </li>
+<li data-kind="Main" data-text="130g 150g 330g 480g about add adding additional airtight all amount an and are area around artichoke artichokes as aside at attachment baby ball be begins below bigger bite black blend blender body boil bottom bowl briefly bring broth building bullet but by can caputo center cheese chewy chopped clumping clumps cohesive cold color combine combined completely container cook corkscrew countertop cover covered crumbly crumbs cup cups damp day deep desired diagonally diameter directly discard dish doh dough down drain drizzle drop each edges ending estimated even everything extra feel fibrous finely fitted flick flour floured for form freeze freezer fresh freshly from frozen further garnish get gluten gradually grated grind ground hand hands have heat heavy hot hour hours hover hug hydrates if immediately in inch inches ingredient ingredients into is it juice julienned keep kind knead knife kosher large layer leaves leaving left lemon lengthwise less lightly like little long loosely low main make makes marry mass meanwhile measure meaty medium method minutes mix mixer mixture moisten month more mostly mound mountain near necessary nickel no not nuts occasionally of off oil olive on once one only onto or orange out outer outside over paddle pale palm pan paring parmesan part partially pasta peel pepper pesto piece pile pinch pistachio pistachios place plastic plates play plus pot pound pour prep pressure pureed quarter quickly raw ready refrigerate relax remaining remove repeat rest return roll rollable rolled room salt sandwiches sauce sauté save scant season seasoned semolina serve serves servings set shake shape sheet shelled should single size slice slug small smoosh smoother snap so speed spider squeeze stand start starting stiction stiff stiffens still stir stirring storage strainer struggle such surface swirl tablespoon tablespoons taste tastes teaspoon temperature tender than the then thick thickens throughout time to together top tossing total toward towel transfer trofie turn twice twist uncover unsalted until up use using very virgin warmed water wedges well when will with within work working wrap yellow yet you your zest">
+      <a href="trofie-with-pistachio-artichokes-orange-zest/">
+        <span class="kind-tag" data-kind="Main">Main</span>
+        <h2>Trofie with Pistachio, Artichokes, and Orange Zest</h2>
+        
+      </a>
+    </li>
+<li data-kind="Bread" data-text="13x4x4 9x5 about achieves active add aim all allow also alternative am an and at attachment back bake baking ball balls be beaten before below bowl bread brown brush bulk butter by center check coil coils combined completely compresses consistency constantly continue cool cooling corners cover crumb crust crystal cut cutting dark dck degasses degrees dense design diamond directions divide don done doubled dough down dry each eat edges egg eggs equal example facing fast fill final finish flat flour foil fold for from get getting goes grams granulated gumminess half hand hands have heat height hook hot hour hours if in inch incorporate ingredients inside instead internal into is it kind kitchenaid knead kneading kosher large leave let letter letting lid lidded lightly like ll loaf loaves long longer low main make makes mashed medium milk minutes mix mixer mixture more mostly much needed needs next no non of oiled on one only open or out oval oven over paddle pan pans pause piece pieces pin pinch place plastic plenty pm point potatoes pour powder pre preheat profile promptly proofed proofs pullman rack rather reaches refrigerator remove rest rim rise roll rolling room round rounded row running salt same schedule seam shape shaping shokupan should side sides six size skip slicing slide smooth spatula speed spirals square stand start starting stick sticky stirring stretchy sugar surface switch tablespoon tablespoons take tangzhong teaspoons temperature tent than the then thermometer thin thirds this three tight time to together top trail two unsalted until up use very wait warm wash water when while whisk whole will windowpane wire with within won working wrap yeast yeasted you">
+      <a href="shokupan-pullman-loaf/">
+        <span class="kind-tag" data-kind="Bread">Bread</span>
+        <h2>Yeasted shokupan pullman loaf</h2>
+        
+      </a>
+    </li>
+<li data-kind="Dessert" data-text="100g 110g 120ml 20g 300g 50g 80ml about active add again almond almonds and as at bake bakes baking batter be beat before bowl brittle butter cake can caramel caramelised caster centre chill chilled chilling clean cm combine comes consistency cool cornmeal cover cream cup cups decorate dessert directions don double dust each edges egg eggs evenly everything example extra flat flour fluffy foil fold food for from fruit full fully further grams grated grease greasing ground heat heavy hours in incorporated ingredients inserted into is japanese juice kaki kind large lay least leave left lemon lemons lift light line lukewarm make meanwhile melt melts min minutes mixer mixture ml need occasionally of off on one onto or out oven over pan parchment peaks persimmon piece pinch place plate plum plus pm polenta possible pour powder preheat process processor rack ready removing replaced return round runs sabayon salt sand saucepan schedule sea seeds separate serve served serves sesame set shards shatter sheet sicilian side silicone simmering skewer slice slices small so softened spoon spoonful spread spreads sprinkle stand start sticks stir sugar superfine take test the then thick thickened thin thinly time tin tipping to toasted transfer tsp two ultra units unsalted until up use water when while whip whisk white will wine wire with yolks you yuzu zest">
+      <a href="yuzu-almond-cake-with-sesame-brittle/">
+        <span class="kind-tag" data-kind="Dessert">Dessert</span>
+        <h2>Yuzu Almond Cake With Sesame Brittle</h2>
+        <p>Yuzu Almond Cake with Sesame Brittle. Serves 8. Served with a plum wine sabayon and ultra-thin slices of kaki (Japanese persimmon). Yuzu zest and juice can be replaced with Sicilian lemon.</p>
+      </a>
+    </li>
 </ul>
+<p class="empty" id="empty" hidden>No recipes match that search.</p>
 </main>
+<script src="filter.js?v=3c1bd5aa"></script>
 </body>
 </html>
