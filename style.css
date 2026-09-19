@@ -149,6 +149,13 @@ li.step { position: relative; margin: .7rem 0; }
     flex-direction: column; align-items: flex-end; margin: 0;
   }
 }
+.step-now {
+  font: inherit; font-size: .72rem; line-height: 1.5; cursor: pointer;
+  color: var(--muted); background: none;
+  border: 1px solid var(--line); border-radius: 999px; padding: 0 .45rem;
+}
+.step-now:hover { color: var(--accent); border-color: var(--accent); }
+.step-now:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .times-note { color: var(--muted); font-size: .85rem; }
 .times-note button {
   font: inherit; font-size: .85rem; cursor: pointer; color: var(--accent);
