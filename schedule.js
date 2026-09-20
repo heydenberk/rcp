@@ -195,7 +195,7 @@
   const alarmAllBtn = bar.querySelector('.times-alarm-all');
   const nextLabel = bar.querySelector('.next-alert');
   const ALARM_KEY = `rcp:alarms:${location.pathname}`;
-  const SNOOZE_MINS = 5;
+  const SNOOZES = [1, 5, 10, 15, 30, 60];
   const RING_EVERY_MS = 2500;
   const dayStart = new Date();
   dayStart.setHours(0, 0, 0, 0);
@@ -271,7 +271,14 @@
   banner.innerHTML =
     '<div class="alarm-body"><b class="alarm-title"></b><span class="alarm-text"></span></div>' +
     '<div class="alarm-acts">' +
-    `<button type="button" class="alarm-snooze">Snooze ${SNOOZE_MINS} min</button>` +
+    '<span class="alarm-snoozes" role="group" aria-label="Snooze this alarm">' +
+    '<span class="alarm-snooze-label">Snooze</span>' +
+    SNOOZES.map(
+      (m) =>
+        `<button type="button" class="alarm-snooze" data-mins="${m}" ` +
+        `title="Ring again in ${m} minute${m === 1 ? '' : 's'}">${m}m</button>`
+    ).join('') +
+    '</span>' +
     '<button type="button" class="alarm-dismiss">Dismiss</button></div>';
   document.body.append(banner);
   const dismissBtn = banner.querySelector('.alarm-dismiss');
@@ -293,10 +300,10 @@
     if (document.activeElement === document.body) dismissBtn.focus({ preventScroll: true });
   }
 
-  function clearRing(li, snooze) {
+  function clearRing(li, snoozeMins) {
     ringing = ringing.filter((x) => x !== li);
-    if (snooze) {
-      li.dataset.snooze = String(nowMins() + SNOOZE_MINS);
+    if (snoozeMins) {
+      li.dataset.snooze = String(nowMins() + snoozeMins);
       delete li.dataset.fired; // re-arms for the snoozed time
     } else {
       delete li.dataset.snooze;
@@ -307,10 +314,12 @@
     sync();
   }
 
-  dismissBtn.addEventListener('click', () => ringing[0] && clearRing(ringing[0], false));
-  banner
-    .querySelector('.alarm-snooze')
-    .addEventListener('click', () => ringing[0] && clearRing(ringing[0], true));
+  banner.addEventListener('click', (e) => {
+    const snooze = e.target.closest('.alarm-snooze');
+    const dismiss = e.target.closest('.alarm-dismiss');
+    if (!snooze && !dismiss) return;
+    if (ringing[0]) clearRing(ringing[0], snooze ? Number(snooze.dataset.mins) : 0);
+  });
 
   // --- per-step bells ---------------------------------------------------
   for (const li of steps()) {
