@@ -203,6 +203,8 @@ li.step.step-current::before {
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
   overflow: hidden; font-size: .92rem;
 }
+.alarm-quiet { display: block; margin-top: .2rem; color: var(--muted); font-size: .78rem; font-style: italic; }
+.alarm-quiet[hidden] { display: none; }
 .alarm-acts { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .7rem; margin-left: auto; }
 .alarm-acts button {
   font: inherit; font-size: .9rem; cursor: pointer; white-space: nowrap;

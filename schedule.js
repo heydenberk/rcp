@@ -190,13 +190,15 @@
   // set one on the 30-minute rest and ignore the rest. Day 1 is whatever
   // calendar day the page was opened on, so a step's clock time maps to a real
   // instant; Day 2 steps land 24h later. When an armed step comes due the chime
-  // repeats until it's dismissed or snoozed — the point is to be heard from
-  // another room, not to be missed while your hands are in dough.
+  // repeats for a minute — the point is to be heard from another room, not to
+  // be missed while your hands are in dough — and the banner stays until it's
+  // dismissed or snoozed.
   const alarmAllBtn = bar.querySelector('.times-alarm-all');
   const nextLabel = bar.querySelector('.next-alert');
   const ALARM_KEY = `rcp:alarms:${location.pathname}`;
   const SNOOZES = [1, 5, 10, 15, 30, 60];
   const RING_EVERY_MS = 2500;
+  const RING_MAX_MS = 60000;
   const dayStart = new Date();
   dayStart.setHours(0, 0, 0, 0);
   const nowMins = () => (Date.now() - dayStart.getTime()) / 60000;
@@ -208,6 +210,7 @@
 
   let audio = null;
   let ringTimer = null;
+  let ringStart = 0;
   let ticker = null;
   let ringing = [];
 
@@ -251,10 +254,23 @@
     ping([880, 1108.73, 1318.51], 0.75);
   }
 
+  // The sound gives up after RING_MAX_MS so an alarm nobody is around for
+  // doesn't chime into an empty kitchen all afternoon. The banner stays put —
+  // going quiet is not the same as being handled, and you still owe it a
+  // dismiss or a snooze. Each new alarm restarts the window.
   function startRinging() {
+    ringStart = Date.now();
+    quietNote.hidden = true;
     if (ringTimer) return;
     chime();
-    ringTimer = setInterval(chime, RING_EVERY_MS);
+    ringTimer = setInterval(() => {
+      if (Date.now() - ringStart >= RING_MAX_MS) {
+        stopRinging();
+        quietNote.hidden = false;
+        return;
+      }
+      chime();
+    }, RING_EVERY_MS);
   }
 
   function stopRinging() {
@@ -269,7 +285,8 @@
   banner.setAttribute('role', 'alertdialog');
   banner.setAttribute('aria-live', 'assertive');
   banner.innerHTML =
-    '<div class="alarm-body"><b class="alarm-title"></b><span class="alarm-text"></span></div>' +
+    '<div class="alarm-body"><b class="alarm-title"></b><span class="alarm-text"></span>' +
+    '<span class="alarm-quiet" hidden>Alarm silenced after 1 min — still waiting on you.</span></div>' +
     '<div class="alarm-acts">' +
     '<span class="alarm-snoozes" role="group" aria-label="Snooze this alarm">' +
     '<span class="alarm-snooze-label">Snooze</span>' +
@@ -282,6 +299,7 @@
     '<button type="button" class="alarm-dismiss">Dismiss</button></div>';
   document.body.append(banner);
   const dismissBtn = banner.querySelector('.alarm-dismiss');
+  const quietNote = banner.querySelector('.alarm-quiet');
 
   function showBanner() {
     if (!ringing.length) {
@@ -396,11 +414,13 @@
     const now = nowMins();
     let current = null;
     let next = null;
+    let added = false;
     for (const li of list) {
       const due = dueAt(li);
       if (due <= now) {
         if (isArmed(li) && li.dataset.fired !== '1' && !silent && !ringing.includes(li)) {
           ringing.push(li);
+          added = true;
         }
         li.dataset.fired = '1';
         current = li;
@@ -413,7 +433,7 @@
       li.classList.remove('step-current');
     }
     current?.classList.add('step-current');
-    if (ringing.length > 0 !== !banner.hidden) showBanner();
+    if (added || ringing.length > 0 !== !banner.hidden) showBanner();
     renderNext(next);
 
     const anyArmed = list.some(isArmed);
