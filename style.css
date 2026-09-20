@@ -162,6 +162,55 @@ li.step { position: relative; margin: .7rem 0; }
   background: none; border: 1px solid var(--line); border-radius: 6px; padding: .15rem .5rem;
 }
 .times-note button:hover { border-color: var(--accent); }
+.next-alert { display: block; margin-top: .35rem; font-variant-numeric: tabular-nums; }
+/* per-step alarm bell, sitting beside the clock and the "now" button */
+.step-alarm {
+  font: inherit; font-size: .72rem; line-height: 1.5; cursor: pointer;
+  background: none; border: 1px solid var(--line); border-radius: 999px;
+  padding: 0 .4rem; filter: grayscale(1); opacity: .7;
+}
+.step-alarm:hover { border-color: var(--accent); opacity: 1; }
+.step-alarm:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.step-alarm[aria-pressed="true"] { filter: none; opacity: 1; border-color: var(--accent); }
+li.step.step-armed .step-clock { border-color: var(--accent); }
+/* the step whose time has arrived — a "you are here" marker */
+li.step.step-current {
+  background: var(--code); border-radius: 6px;
+  padding: .4rem .6rem; margin-left: -.6rem;
+  box-shadow: -.35rem 0 0 var(--accent);
+}
+@keyframes step-due-flash { from { background: var(--accent); } }
+@media (prefers-reduced-motion: no-preference) {
+  li.step.step-current { animation: step-due-flash 1.2s ease-out; }
+}
+/* the ringing banner — pinned so it's reachable wherever you've scrolled to */
+.alarm-banner {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: 1rem; z-index: 20;
+  width: min(42rem, calc(100vw - 1.5rem));
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem;
+  padding: .8rem 1rem; border: 1px solid var(--accent); border-radius: 10px;
+  background: var(--card); color: var(--fg);
+  box-shadow: 0 6px 24px rgb(0 0 0 / .28);
+}
+.alarm-banner[hidden] { display: none; }
+.alarm-body { flex: 1 1 16rem; min-width: 0; }
+.alarm-title { display: block; color: var(--accent); font-size: .85rem; }
+.alarm-text {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden; font-size: .92rem;
+}
+.alarm-acts { display: flex; gap: .5rem; margin-left: auto; }
+.alarm-acts button {
+  font: inherit; font-size: .9rem; cursor: pointer; white-space: nowrap;
+  border: 1px solid var(--line); border-radius: 6px; padding: .35rem .7rem;
+  background: var(--code); color: var(--fg);
+}
+.alarm-dismiss { border-color: var(--accent) !important; color: var(--accent) !important; }
+.alarm-acts button:hover { border-color: var(--accent); }
+@keyframes alarm-pulse { 50% { box-shadow: 0 6px 24px rgb(0 0 0 / .28), 0 0 0 4px var(--accent); } }
+@media (prefers-reduced-motion: no-preference) {
+  .alarm-banner:not([hidden]) { animation: alarm-pulse 2.5s ease-in-out infinite; }
+}
 /* adjust panel */
 .adjust { margin: 2rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
 .adjust h2 { margin-top: 0; border: none; }
